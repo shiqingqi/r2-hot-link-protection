@@ -2,8 +2,7 @@
 const ALLOWED = new Set([
   'llbe.cn',
   'www.llbe.cn', 
-  'kekebubu.cn',
-  'www.kekebubu.cn'
+  'blog.llbe.cn'
 ]);
 const CORP    = 'same-site';     // same-origin 也行
 const BUCKET  = 'MEDIA';         // 对应 wrangler 的 r2_buckets 绑定名
