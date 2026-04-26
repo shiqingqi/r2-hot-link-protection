@@ -14,16 +14,9 @@ export default {
     const refererHeader = request.headers.get('Referer') || '';
     const refererHost   = refererHeader ? new URL(refererHeader).hostname : '';
     const refererOrigin = refererHeader ? new URL(refererHeader).origin   : '';
-    /*console.log("refererHost:", refererHost, "refererHeader:", refererHeader, "refererOrigin:", refererOrigin);*/
-    console.log(`refererHost:---${refererHost}--`);
     
     if (!ALLOWED.has(refererHost)) {
-        if ( refererHost ) {
-            console.log(`refererHost not null, blocked:---${refererHost}--`);
-            return new Response('blocked', { status: 403 });
-        } else {
-          console.log(`refererHost is null, pass:---${refererHost}--`);
-        }
+        return new Response('blocked', { status: 403 });
     }
 
     /* 0-bis. 预检请求（极少数场景，但写上更完整） */
