@@ -2,8 +2,7 @@
 const ALLOWED = new Set([
   'llbe.cn',
   'www.llbe.cn', 
-  'blog.llbe.cn',
-  '*.weixin.qq.com',
+  'blog.llbe.cn'
 ]);
 const CORP    = 'same-site';     // same-origin 也行
 const BUCKET  = 'MEDIA';         // 对应 wrangler 的 r2_buckets 绑定名
@@ -15,7 +14,7 @@ export default {
     const refererHeader = request.headers.get('Referer') || '';
     const refererHost   = refererHeader ? new URL(refererHeader).hostname : '';
     const refererOrigin = refererHeader ? new URL(refererHeader).origin   : '';
-
+    console.log("refererHost", refererHost);
     if (!ALLOWED.has(refererHost)) {
       return new Response('blocked', { status: 403 });
     }
