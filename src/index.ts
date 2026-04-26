@@ -18,7 +18,7 @@ export default {
     console.log(`refererHost:---${refererHost}--`);
     
     if (!ALLOWED.has(refererHost)) {
-        conslog.log(`blocked refererHost:---${refererHost}--`);
+        console.log(`blocked refererHost:---${refererHost}--`);
         return new Response('blocked', { status: 403 });
     }
 
