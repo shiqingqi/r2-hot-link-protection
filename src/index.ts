@@ -15,7 +15,7 @@ export default {
     const refererHost   = refererHeader ? new URL(refererHeader).hostname : '';
     const refererOrigin = refererHeader ? new URL(refererHeader).origin   : '';
     
-    console.log(`Request: ${Request.url}`);
+    console.log(`Request: ${request.url}`);
     
     if (!ALLOWED.has(refererHost)) {
         return new Response('blocked', { status: 403 })
