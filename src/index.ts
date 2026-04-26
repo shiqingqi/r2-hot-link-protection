@@ -18,8 +18,12 @@ export default {
     console.log(`refererHost:---${refererHost}--`);
     
     if (!ALLOWED.has(refererHost)) {
-        console.log(`blocked refererHost:---${refererHost}--`);
-        return new Response('blocked', { status: 403 });
+        if ( refererHost ) {
+            console.log(`refererHost not null, blocked:---${refererHost}--`);
+            return new Response('blocked', { status: 403 });
+        } else {
+          console.log(`refererHost is null, pass:---${refererHost}--`);
+        }
     }
 
     /* 0-bis. 预检请求（极少数场景，但写上更完整） */
