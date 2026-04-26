@@ -14,12 +14,11 @@ export default {
     const refererHeader = request.headers.get('Referer') || '';
     const refererHost   = refererHeader ? new URL(refererHeader).hostname : '';
     const refererOrigin = refererHeader ? new URL(refererHeader).origin   : '';
-    console.log(`refererHost: ${refererHost}, refererHeader: ${refererHeader}, refererOrigin: ${refererOrigin}`);
-    if (!refererHeader.includes('_cover') && !ALLOWED.has(refererHost)) {
-        console.log(`block, ${refererHeader}, refererHost: ${refererHost}`);
+    
+    console.log(`Request: ${Request.url}`);
+    
+    if (!ALLOWED.has(refererHost)) {
         return new Response('blocked', { status: 403 })
-    } else {
-        console.log(`not block`);
     }
 
     /* 0-bis. 预检请求（极少数场景，但写上更完整） */
