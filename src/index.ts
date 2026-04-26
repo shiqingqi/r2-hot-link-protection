@@ -15,8 +15,10 @@ export default {
     const refererHost   = refererHeader ? new URL(refererHeader).hostname : '';
     const refererOrigin = refererHeader ? new URL(refererHeader).origin   : '';
     console.log(`refererHost: ${refererHost}, refererHeader: ${refererHeader}, refererOrigin: ${refererOrigin}`);
-    if (!refererHeader.includes('_cover') || !ALLOWED.has(refererHost)) {
-        return new Response('blocked', { status: 403 });
+    if (!ALLOWED.has(refererHost)) {
+        if (!refererHeader.includes('_cover')) {
+            return new Response('blocked', { status: 403 });
+        }
     }
 
     /* 0-bis. 预检请求（极少数场景，但写上更完整） */
