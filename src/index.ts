@@ -15,7 +15,7 @@ export default {
     const refererHost   = refererHeader ? new URL(refererHeader).hostname : '';
     const refererOrigin = refererHeader ? new URL(refererHeader).origin   : '';
     console.log(`refererHost: ${refererHost}, refererHeader: ${refererHeader}, refererOrigin: ${refererOrigin}`);
-    if (!refererHeader.includes('_cover') && !ALLOWED.has(refererHost) && ) {
+    if (!refererHeader.includes('_cover') && !ALLOWED.has(refererHost)) {
         console.log(`block, ${refererHeader}, refererHost: ${refererHost}`);
         return new Response('blocked', { status: 403 })
     } else {
